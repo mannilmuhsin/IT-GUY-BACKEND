@@ -38,20 +38,19 @@ const createProductTable = `
     name VARCHAR(255) NOT NULL,
     description TEXT,
     price NUMERIC(10, 2) NOT NULL,
-    category_id INT REFERENCES categories(id),
     inventory_count INT NOT NULL DEFAULT 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   )
 `;
 // Category table
-const createCategoryTable = `
-  CREATE TABLE IF NOT EXISTS categories (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    parent_id INT REFERENCES categories(id),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-  )
-`;
+// const createCategoryTable = `
+//   CREATE TABLE IF NOT EXISTS categories (
+//     id SERIAL PRIMARY KEY,
+//     name VARCHAR(255) NOT NULL,
+//     parent_id INT REFERENCES categories(id),
+//     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+//   )
+// `;
 // User table
 const createUserTable = `
   CREATE TABLE IF NOT EXISTS users (
@@ -86,7 +85,7 @@ const createOrderItemTable = `
 const createTablesInOrder = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield executeQuery(createUserTable);
-        yield executeQuery(createCategoryTable);
+        // await executeQuery(createCategoryTable);
         yield executeQuery(createProductTable);
         yield executeQuery(createOrderTable);
         yield executeQuery(createOrderItemTable);
